@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battal Emirhan Akbaba</title>
+<meta name="description" content="Battal Emirhan Akbaba – Technical Solutions Manager, Product Owner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
+<style>
+/*
+VOICE: sakin ama teknik – gece çalışan bir ağ operasyon merkezi
+IDEA: sayfa canlı bir ağ topolojisinin üstünde yüzen paneller gibi davranır
+PICTURE: tam ekran canvas – bağlanan düğümler, kenarlardan akan sinyal pulsları, mouse'a tepki
+COLOUR and TYPE: derin gece zemini, cyan sinyal + mavi destek; Space Grotesk başlık, Inter metin, JetBrains Mono tarih
+LAYOUT: tam ekran hero, altında cam paneller; zaman çizelgesi, ızgara kartlar
+*/
+:root{color-scheme:dark;--bg:#060a12;--panel:rgba(12,19,32,.72);--panel2:rgba(18,28,46,.8);--ink:#e8eef8;--mute:#8d9bb2;--line:rgba(130,170,220,.16);--cyan:#3fe0f0;--blue:#4f8cff;--glow:rgba(63,224,240,.28)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:80px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:clip}
+a{color:inherit}
+::selection{background:var(--cyan);color:#041016}
+
+/* arka plan */
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 85% -5%,rgba(79,140,255,.20),transparent 62%),
+    radial-gradient(760px 520px at -5% 105%,rgba(63,224,240,.12),transparent 60%),
+    radial-gradient(1200px 800px at 50% 50%,transparent 55%,rgba(0,0,0,.55))}
+header,main,footer{position:relative;z-index:1}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(4vw,18px)}
+
+/* header */
+header{position:sticky;top:0;background:rgba(6,10,18,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;min-height:64px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;font:600 16px/1 "Space Grotesk",sans-serif;text-decoration:none;margin-right:auto}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#041016;font-weight:700;font-size:14px;box-shadow:0 0 18px var(--glow)}
+nav{display:flex;gap:4px;flex-wrap:wrap;font-size:15px}
+nav a{text-decoration:none;color:var(--mute);padding:8px 10px;border-radius:8px;transition:color .2s,background .2s}
+nav a:hover,nav a.on{color:var(--ink);background:rgba(63,224,240,.08)}
+nav a.on{color:var(--cyan)}
+.lang{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:rgba(255,255,255,.02)}
+.lang button{font:500 13px "JetBrains Mono",monospace;border:0;background:none;color:var(--mute);padding:6px 12px;min-height:36px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--cyan);color:#041016}
+.lang button:focus-visible,.btn:focus-visible,.ico:focus-visible,nav a:focus-visible,.contact-card:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* hero */
+.hero{min-height:calc(100svh - 64px);display:grid;align-content:center;padding:48px 0 72px}
+.chip{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(12,19,32,.6);color:var(--mute);font-size:14px;margin-bottom:22px}
+.chip svg{color:var(--cyan)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 var(--glow);animation:ping 2.2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(63,224,240,.55)}80%,100%{box-shadow:0 0 0 10px rgba(63,224,240,0)}}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;text-wrap:balance}
+h1{font-size:clamp(40px,7.6vw,84px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px;text-shadow:0 0 40px rgba(79,140,255,.25)}
+.role{font:500 clamp(18px,2.4vw,22px)/1.4 "Space Grotesk",sans-serif;color:var(--cyan);margin:0 0 22px}
+.intro{font-size:17px;color:#c3cede;max-width:none;text-align:justify;text-justify:inter-word;hyphens:none;-webkit-hyphens:none;word-break:normal;overflow-wrap:normal}
+@media(max-width:420px){.intro{text-align:left}}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 20px;border:1px solid var(--line);border-radius:11px;text-decoration:none;font-weight:600;background:rgba(12,19,32,.6);transition:transform .2s,border-color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#041016;border:0;box-shadow:0 8px 28px rgba(63,224,240,.25)}
+.btn.primary:hover{box-shadow:0 10px 34px rgba(63,224,240,.4)}
+
+/* paneller */
+section.panel{margin:0 0 28px;padding:clamp(24px,4vw,44px);background:var(--panel);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+h2{font-size:clamp(26px,3.4vw,34px);line-height:1.1;margin:0 0 24px;display:flex;align-items:center;gap:14px}
+h2 i,h2 svg{color:var(--cyan);font-size:.7em}
+h3{font-size:19px;line-height:1.3;margin:0 0 4px}
+p{margin:0 0 12px;max-width:70ch}
+.meta{color:var(--mute);font-size:14px}
+.date{font:500 13px/1.6 "JetBrains Mono",monospace;color:var(--cyan);opacity:.9}
+
+/* zaman çizelgesi */
+.job{display:grid;grid-template-columns:170px minmax(0,1fr);gap:22px}
+.job>div:last-child{position:relative;border-left:1px solid var(--line);padding:0 0 30px 26px}
+.job:last-child>div:last-child{padding-bottom:4px}
+.job>div:last-child::before{content:"";position:absolute;left:-6px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 12px var(--glow)}
+.job>.date{padding-top:2px;text-align:right}
+.job ul{margin:12px 0 0;padding-left:18px;color:#c3cede}
+.job li{margin:4px 0}
+.job li::marker{color:var(--cyan)}
+@media(max-width:640px){.job{grid-template-columns:1fr;gap:6px}.job>.date{text-align:left;padding-left:26px}}
+
+/* yayınlar */
+.pub{position:relative;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,30px);background:var(--panel2);overflow:hidden;transition:border-color .2s}
+.pub::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue),transparent)}
+.pub:hover{border-color:rgba(63,224,240,.4)}
+.pub+.pub{margin-top:18px}
+.kicker{font:500 13px "JetBrains Mono",monospace;color:var(--cyan);margin-bottom:10px}
+.pubtitle{font-size:clamp(20px,2.6vw,25px);line-height:1.25;margin-bottom:10px}
+.pub p:not(.meta):not(.kicker){color:#c3cede}
+.kw{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:14px 0 0}
+.kw li{border:1px solid rgba(63,224,240,.25);background:rgba(63,224,240,.06);border-radius:999px;padding:3px 12px;font-size:13px;color:#a9e9f1}
+
+/* yetenekler */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}
+.skillbox{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--panel2);transition:border-color .2s,transform .2s,box-shadow .2s}
+.skillbox:hover{border-color:rgba(63,224,240,.45);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.35),0 0 0 1px rgba(63,224,240,.1)}
+.skillbox h3{display:flex;align-items:center;gap:12px;font-size:17px;margin-bottom:14px}
+.skillbox h3 svg{flex:none;width:38px!important;height:38px;padding:9px;border-radius:10px;background:rgba(63,224,240,.1);color:var(--cyan);box-sizing:border-box}
+.skillbox ul{margin:0;padding:0;list-style:none}
+.skillbox li{padding:7px 0;border-top:1px solid var(--line);font-size:15px;color:#c3cede}
+.skillbox li:first-child{border-top:0}
+
+/* iletişim */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;margin-top:20px}
+.contact-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 14px;border:1px solid var(--line);border-radius:16px;text-decoration:none;text-align:center;background:var(--panel2);transition:border-color .2s,transform .2s,box-shadow .2s}
+.contact-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 0 26px var(--glow)}
+.contact-card svg{font-size:30px;color:var(--cyan)}
+.contact-card strong{font-size:16px}
+.contact-card small{color:var(--mute);font-size:13px;overflow-wrap:anywhere}
+
+footer{padding:24px 0 40px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* kaydırınca beliren paneller */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.dot{animation:none}}
+
+@media(max-width:760px){nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;margin:0 -6px}nav a{flex:none}}
+html[data-lang=tr] [lang=en],html[data-lang=en] [lang=tr]{display:none}
+</style>
+</head>
+<body>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="bgfx" aria-hidden="true"></div>
+
+<header><div class="wrap">
+  <a class="brand" href="#top"><b>EA</b>Battal Emirhan Akbaba</a>
+  <nav>
+    <a href="#egitim"><span lang="tr">Eğitim</span><span lang="en">Education</span></a>
+    <a href="#deneyim"><span lang="tr">Deneyim</span><span lang="en">Experience</span></a>
+    <a href="#yetenekler"><span lang="tr">Yetenekler</span><span lang="en">Skills</span></a>
+    <a href="#akademik"><span lang="tr">Yayınlar</span><span lang="en">Research</span></a>
+    <a href="#iletisim"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Dil / Language">
+    <button id="btn-en" aria-pressed="true">EN</button>
+    <button id="btn-tr" aria-pressed="false">TR</button>
+  </div>
+</div></header>
+
+<main class="wrap" id="top">
+
+<section class="hero">
+  <p class="chip"><span class="dot"></span><i class="fa-solid fa-location-dot"></i> Ankara, Türkiye</p>
+  <h1>Battal Emirhan Akbaba</h1>
+  <p class="role">Technical Solutions Manager · Product Owner</p>
+  <p class="intro" lang="en">As an engineer with a background in Industrial and Computer Engineering, I specialize in managing software products and driving digital transformation. My experience covers business process optimization, technical consultancy, and the implementation of scalable digital solutions that improve efficiency and create real business value. With a strong passion for data-driven innovation and emerging technologies, I focus on helping organizations navigate their digital journey and turn complex challenges into opportunities for growth.</p>
+  <p class="intro" lang="tr">Endüstri ve Bilgisayar Mühendisliği altyapısına sahip bir mühendis olarak yazılım ürünlerini yönetme ve dijital dönüşümü yönlendirme konusunda uzmanlaşıyorum. Deneyimim; iş süreçlerinin iyileştirilmesini, teknik danışmanlığı ve verimliliği artırıp gerçek iş değeri yaratan ölçeklenebilir dijital çözümlerin hayata geçirilmesini kapsıyor. Veriye dayalı inovasyona ve yeni teknolojilere duyduğum ilgiyle, kurumların dijital yolculuklarında yol almalarına ve karmaşık zorlukları büyüme fırsatlarına dönüştürmelerine odaklanıyorum.</p>
+  <div class="btns">
+    <a class="btn primary" href="#iletisim"><i class="fa-solid fa-paper-plane"></i><span lang="tr">İletişime geç</span><span lang="en">Get in touch</span></a>
+  </div>
+</section>
+
+<section id="egitim" class="panel reveal">
+  <h2><i class="fa-solid fa-graduation-cap"></i><span lang="tr">Eğitim</span><span lang="en">Education</span></h2>
+  <div class="job">
+    <div class="date">2024 – 2026</div>
+    <div>
+      <h3><span lang="tr">Yüksek Lisans, Bilgisayar Mühendisliği</span><span lang="en">MSc, Computer Engineering</span></h3>
+      <p class="meta"><span lang="tr">Atılım Üniversitesi, Ankara</span><span lang="en">Atılım University, Ankara</span></p>
+      <p><span lang="tr">Tez: </span><span lang="en">Thesis: </span><em>A Document-Based LLM-Driven Adaptive Learning System</em></p>
+    </div>
+  </div>
+  <div class="job">
+    <div class="date">2021 – 2022</div>
+    <div>
+      <h3>Erasmus+</h3>
+      <p class="meta"><span lang="tr">AGH Bilim ve Teknoloji Üniversitesi, Krakow, Polonya</span><span lang="en">AGH University of Krakow, Poland</span></p>
+    </div>
+  </div>
+  <div class="job">
+    <div class="date">2018 – 2023</div>
+    <div>
+      <h3><span lang="tr">Lisans, Endüstri Mühendisliği</span><span lang="en">BSc, Industrial Engineering</span></h3>
+      <p class="meta"><span lang="tr">Atılım Üniversitesi, Ankara</span><span lang="en">Atılım University, Ankara</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="deneyim" class="panel reveal">
+  <h2><i class="fa-solid fa-briefcase"></i><span lang="tr">Deneyim</span><span lang="en">Experience</span></h2>
+  <div id="jobs"></div>
+</section>
+
+<section id="yetenekler" class="panel reveal">
+  <h2><i class="fa-solid fa-microchip"></i><span lang="tr">Yetenekler</span><span lang="en">Skills</span></h2>
+  <div class="skills" id="skills"></div>
+</section>
+
+<section id="akademik" class="panel reveal">
+  <h2><i class="fa-solid fa-magnifying-glass-chart"></i><span lang="tr">Araştırma ve yayınlar</span><span lang="en">Research & publications</span></h2>
+  <article class="pub">
+    <p class="kicker"><span lang="tr">Konferans bildirisi · IEEE · 2026</span><span lang="en">Conference paper · IEEE · 2026</span></p>
+    <h3 class="pubtitle">Quantifying the Hidden Costs of Open-Source License Selection</h3>
+    <p class="meta"><strong>B. E. Akbaba</strong>, B. Kutlu, M. K. Oğuzer, S. Nazlıoğlu</p>
+    <p class="meta">2026 5th International Informatics and Software Engineering Conference (IISEC), Ankara · DOI: 10.1109/IISEC69317.2026.11418416</p>
+    <p lang="tr">Açık kaynak lisans türünün (permissive, zayıf copyleft, güçlü copyleft) proje bakımına etkisini ampirik olarak inceledik. Altı farklı lisansa sahip 60 GitHub deposunun 120 günlük aktivitesini GitHub REST API ile topladık. Permissive lisanslı projeler daha fazla katkıcı çekiyor ama bakımcıya daha fazla yönetim yükü getiriyor; copyleft projeler ise daha az katılım alsa da daha istikrarlı ve kontrol edilebilir kalıyor. Issue çözüm süresi lisanstan değil, projenin iç yönetiminden etkileniyor. Bu yüzden lisans seçimi yalnızca hukuki değil, stratejik bir operasyonel karar.</p>
+    <p lang="en">We empirically examined how license type (permissive, weak copyleft, strong copyleft) affects open-source maintenance, using 120 days of activity from 60 GitHub repositories across six licenses, collected via the GitHub REST API. Permissive projects attract more contributors but place a heavier administrative load on maintainers, while copyleft projects see less participation but stay more stable and manageable. Issue resolution time depends on internal project management rather than the license, so choosing a license is a strategic operational decision, not only a legal one.</p>
+    <ul class="kw"><li>Open source software</li><li>Software licensing</li><li>Maintainability</li><li>Software metrics</li><li>Mining software repositories</li></ul>
+    <div class="btns">
+      <a class="btn primary" href="https://ieeexplore.ieee.org/document/11418416" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i><span lang="tr">IEEE Xplore'da oku</span><span lang="en">Read on IEEE Xplore</span></a>
+    </div>
+  </article>
+  <article class="pub">
+    <p class="kicker"><span lang="tr">Yüksek lisans tezi · Atılım Üniversitesi · 2026</span><span lang="en">MSc thesis · Atılım University · 2026</span></p>
+    <h3 class="pubtitle">A Document-Based LLM-Driven Adaptive Learning System</h3>
+    <p lang="tr">Kural tabanlı uyarlanabilir öğrenme sistemlerinin esneklik sorununa karşı, büyük dil modelleriyle çalışan bir uyarlanabilir öğrenme çerçevesi geliştirdim. Sistem, öğrencinin etkileşimlerine göre açıklamalar üretiyor, soru zorluğunu ayarlıyor ve anlık geri bildirim veriyor. Back-end Python, arayüz JavaScript/React ile yazıldı; içerik üretimi için Ollama üzerinde çalışan, doküman tabanlı Llama 3.1 modeli kullanıldı. Etkileşim ve performans odaklı deneyler, LLM tabanlı uyarlamanın özellikle anlık geri bildirim ve zorluk ayarlamada sistemin tepki verme ve uyum yeteneğini artırdığını gösterdi.</p>
+    <p lang="en">To overcome the rigidity of rule-based adaptive learning systems, I built an LLM-driven adaptive learning framework that generates explanations, adjusts question difficulty and delivers real-time feedback based on each learner's interactions. The back end is written in Python and the interface in JavaScript/React, with a document-based Llama 3.1 model served through Ollama for content generation. Experiments on engagement and performance showed that LLM-driven adaptation improves the system's responsiveness and adaptability, especially in real-time feedback and difficulty adjustment.</p>
+    <ul class="kw"><li>Adaptive learning</li><li>Large language models</li><li>Llama 3.1</li><li>Ollama</li><li>Python</li><li>React</li></ul>
+  </article>
+</section>
+
+<section id="iletisim" class="panel reveal">
+  <h2><i class="fa-solid fa-satellite-dish"></i><span lang="tr">İletişim</span><span lang="en">Contact</span></h2>
+  <p lang="tr">Yeni fırsatlar, iş birlikleri ya da sadece tanışmak için ulaşabilirsin.</p>
+  <p lang="en">Feel free to reach out about opportunities, collaborations or just to connect.</p>
+  <div class="contact-grid">
+    <a class="contact-card" href="https://www.linkedin.com/in/battal-emirhan-akbaba-86539b1aa/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i><strong>LinkedIn</strong><small>battal-emirhan-akbaba</small></a>
+    <a class="contact-card" href="https://github.com/EmirhanAkbaba" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i><strong>GitHub</strong><small>EmirhanAkbaba</small></a>
+    <a class="contact-card" href="mailto:emirhan.akbaba23@gmail.com"><i class="fa-solid fa-envelope"></i><strong><span lang="tr">E-posta</span><span lang="en">Email</span></strong><small>emirhan.akbaba23@gmail.com</small></a>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap"><span>© 2026 Battal Emirhan Akbaba</span><span>Ankara, Türkiye</span></div></footer>
+
+<script>
+{
+  const jobs=[
+    {title:"Technical Solutions Manager",org:"Vimesoft",date:{tr:"May 2025 – Günümüz",en:"May 2025 – Present"},place:{tr:"Ankara · Tam zamanlı",en:"Ankara · Full-time"},
+     en:["Managed the product backlog and prioritized development tasks.","Led the planning and delivery of new product features.","Translated business requirements into actionable product specifications.","Monitored and improved live system performance.","Planned and executed User Acceptance Testing (UAT) and analyzed user feedback to enhance product quality.","Prepared project-specific technical requirements and documentation.","Conducted product demonstrations, customer meetings and customer visits for local and global clients.","Provided end-user training and onboarding for product adoption.","Collaborated with cross-functional teams throughout the product development lifecycle.","Managed the delivery and continuous improvement of multiple products."],
+     tr:["Ürün backlog'unu yönettim ve geliştirme görevlerini önceliklendirdim.","Yeni ürün özelliklerinin planlanmasına ve teslimine liderlik ettim.","İş gereksinimlerini uygulanabilir ürün spesifikasyonlarına dönüştürdüm.","Canlı sistem performansını izledim ve iyileştirdim.","Kullanıcı Kabul Testlerini (UAT) planlayıp yürüttüm, kullanıcı geri bildirimlerini analiz ederek ürün kalitesini artırdım.","Projeye özel teknik gereksinimleri ve dokümantasyonu hazırladım.","Yerli ve yabancı müşterilere ürün demoları, müşteri toplantıları ve ziyaretleri gerçekleştirdim.","Ürün benimsenmesi için son kullanıcı eğitimleri ve onboarding sağladım.","Ürün geliştirme yaşam döngüsü boyunca farklı ekiplerle birlikte çalıştım.","Birden fazla ürünün teslimini ve sürekli iyileştirilmesini yönettim."]},
+    {title:"Business Analyst",org:"Omni Factors",date:{tr:"Oca 2024 – Ara 2024",en:"Jan 2024 – Dec 2024"},place:{tr:"Uzaktan · Tam zamanlı",en:"Remote · Full-time"},
+     en:["Analyzed business processes to identify customer requirements and improvement opportunities.","Defined workflows and functional requirements based on business needs.","Planned, executed and analyzed User Acceptance Testing (UAT).","Performed data analysis and reporting using various analytical tools.","Conducted product demonstrations for local and global clients.","Coordinated Go-Live activities and provided post-implementation support.","Collaborated with stakeholders to manage requirement changes and project delivery.","Created technical documentation, workflow designs and UI/UX designs aligned with customer requirements."],
+     tr:["Müşteri gereksinimlerini ve iyileştirme fırsatlarını belirlemek için iş süreçlerini analiz ettim.","İş ihtiyaçlarına göre iş akışlarını ve fonksiyonel gereksinimleri tanımladım.","Kullanıcı Kabul Testlerini (UAT) planladım, yürüttüm ve analiz ettim.","Çeşitli analitik araçlarla veri analizi ve raporlama yaptım.","Yerli ve yabancı müşterilere ürün demoları gerçekleştirdim.","Canlıya geçiş (Go-Live) süreçlerini koordine ettim ve sonrasında destek sağladım.","Gereksinim değişikliklerini ve proje teslimini paydaşlarla birlikte yönettim.","Müşteri gereksinimlerine uygun teknik dokümantasyon, iş akışı tasarımları ve UI/UX tasarımları hazırladım."]},
+    {title:"Solutions Specialist",org:"KoçSistem",date:{tr:"Haz 2022 – Ağu 2023",en:"Jun 2022 – Aug 2023"},place:{tr:"Hibrit · Tam zamanlı",en:"Hybrid · Full-time"},
+     en:["Managed all hardware solution processes of the Ankara teams.","Configured KS products (KoçSistem's cloud-based solutions).","Presented KoçSistem's products and solution portfolios in customer meetings.","Managed technical proposals and pricing for cloud, software and hardware solutions using CRM systems.","Managed and tracked channel customers based on KS products."],
+     tr:["Ankara ekiplerinin tüm donanım çözüm süreçlerini yönettim.","KS ürünlerinin (KoçSistem'in bulut tabanlı çözümleri) konfigürasyonunu yaptım.","Müşteri toplantılarında KoçSistem'in ürün ve çözüm portföyünü sundum.","CRM sistemleri üzerinden bulut, yazılım ve donanım çözümleri için teknik teklif ve fiyatlandırma süreçlerini yönettim.","KS ürünleri bazında kanal müşterilerinin yönetimini ve takibini yaptım."]}
+  ];
+  const both=(o)=>`<span lang="tr">${o.tr}</span><span lang="en">${o.en}</span>`;
+  document.getElementById('jobs').innerHTML=jobs.map(j=>`
+    <div class="job">
+      <div class="date">${both(j.date)}</div>
+      <div>
+        <h3>${j.title} · ${j.org}</h3>
+        <p class="meta">${both(j.place)}</p>
+        <ul lang="tr">${j.tr.map(b=>`<li>${b}</li>`).join('')}</ul>
+        <ul lang="en">${j.en.map(b=>`<li>${b}</li>`).join('')}</ul>
+      </div>
+    </div>`).join('');
+
+  const skills=[
+    {icon:"fa-solid fa-cubes",name:{tr:"Ürün yönetimi",en:"Product management"},
+     items:[{tr:"Product backlog ve önceliklendirme",en:"Product backlog & prioritization"},{tr:"Özellik planlama ve teslim",en:"Feature planning & delivery"},{tr:"Ürün spesifikasyonu yazımı",en:"Product specifications"},{tr:"Kullanıcı Kabul Testi (UAT)",en:"User Acceptance Testing (UAT)"},{tr:"Çoklu ürün yönetimi",en:"Multi-product management"}]},
+    {icon:"fa-solid fa-diagram-project",name:{tr:"İş analizi",en:"Business analysis"},
+     items:[{tr:"Gereksinim analizi",en:"Requirements analysis"},{tr:"İş süreci analizi ve iyileştirme",en:"Business process optimization"},{tr:"İş akışı tasarımı",en:"Workflow design"},{tr:"Teknik dokümantasyon",en:"Technical documentation"},{tr:"Veri analizi ve raporlama",en:"Data analysis & reporting"},{tr:"UI/UX tasarımı",en:"UI/UX design"}]},
+    {icon:"fa-solid fa-handshake",name:{tr:"PreSales ve müşteri",en:"PreSales & customer"},
+     items:[{tr:"Ürün demoları ve sunumlar",en:"Product demos & presentations"},{tr:"Teknik teklif ve fiyatlandırma",en:"Technical proposals & pricing"},{tr:"Müşteri toplantıları ve ziyaretleri",en:"Customer meetings & visits"},{tr:"Son kullanıcı eğitimi ve onboarding",en:"End-user training & onboarding"},{tr:"Go-Live ve canlı sonrası destek",en:"Go-Live & post-implementation support"},{tr:"Kanal müşteri yönetimi, CRM",en:"Channel management, CRM"}]},
+    {icon:"fa-solid fa-code",name:{tr:"Teknik ve araştırma",en:"Technical & research"},
+     items:[{tr:"Büyük dil modelleri (LLM)",en:"Large language models (LLM)"},{tr:"Yazılım geliştirme, yazılım bakımı",en:"Software development, software maintenance"},{tr:"Python, JavaScript, React",en:"Python, JavaScript, React"},{tr:"Ollama, Llama 3.1 ile yerel LLM",en:"Local LLMs with Ollama, Llama 3.1"},{tr:"Bulut çözümleri",en:"Cloud solutions"},{tr:"REST API",en:"REST APIs"},{tr:"PostgreSQL",en:"PostgreSQL"},{tr:".NET",en:".NET"}]}
+  ];
+  document.getElementById('skills').innerHTML=skills.map(s=>`
+    <div class="skillbox">
+      <h3><i class="${s.icon}"></i>${both(s.name)}</h3>
+      <ul>${s.items.map(i=>`<li>${both(i)}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  const root=document.documentElement;
+  const set=l=>{
+    root.dataset.lang=l;root.lang=l;
+    document.getElementById('btn-tr').setAttribute('aria-pressed',l==='tr');
+    document.getElementById('btn-en').setAttribute('aria-pressed',l==='en');
+    try{localStorage.setItem('siteLang',l)}catch(e){}
+  };
+  let saved='en';try{saved=localStorage.getItem('siteLang')||'en'}catch(e){}
+  set(saved);
+  document.getElementById('btn-tr').addEventListener('click',()=>set('tr'));
+  document.getElementById('btn-en').addEventListener('click',()=>set('en'));
+
+  /* panelleri kaydırınca göster + menüde aktif bölüm */
+  const links=[...document.querySelectorAll('nav a')];
+  if('IntersectionObserver' in window){
+    const revealObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObs.unobserve(e.target)}}),{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+    const navObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section[id]').forEach(s=>navObs.observe(s));
+  }else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}
+}
+</script>
+
+<script>
+/* Arka plan: düğüm ağı + akan sinyal pulsları */
+{
+  const c=document.getElementById('net'),x=c.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LINK=150,MOUSE_R=190;
+  let W=0,H=0,nodes=[],pulses=[],flashes=[],running=true;
+  const mouse={x:-9999,y:-9999};
+  const mk=()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,r:Math.random()*1.5+.9,glow:0});
+
+  function resize(){
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    W=innerWidth;H=innerHeight;
+    c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.max(36,Math.min(150,Math.round(W*H/11500)));
+    while(nodes.length<n)nodes.push(mk());
+    nodes.length=n;
+    nodes.forEach(p=>{if(p.x>W+20||p.y>H+20){p.x=Math.random()*W;p.y=Math.random()*H}});
+  }
+  function neighbors(i,skip){
+    const a=nodes[i],out=[];
+    for(let j=0;j<nodes.length;j++){
+      if(j===i||j===skip)continue;
+      const b=nodes[j];
+      if(Math.hypot(a.x-b.x,a.y-b.y)<LINK)out.push(j);
+    }
+    return out;
+  }
+  function spawn(i,hops){
+    if(i==null)i=Math.floor(Math.random()*nodes.length);
+    const nb=neighbors(i);
+    if(!nb.length)return;
+    pulses.push({a:i,b:nb[Math.floor(Math.random()*nb.length)],t:0,hops:hops||3+Math.floor(Math.random()*5)});
+  }
+
+  function draw(step){
+    x.clearRect(0,0,W,H);
+    for(const p of nodes){
+      if(step){
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<-20)p.x=W+20;else if(p.x>W+20)p.x=-20;
+        if(p.y<-20)p.y=H+20;else if(p.y>H+20)p.y=-20;
+        const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);
+        if(d<MOUSE_R&&d>0){const f=(1-d/MOUSE_R)*.6;p.x+=dx/d*f;p.y+=dy/d*f}
+        p.glow*=.94;
+      }
+    }
+    /* kenarlar */
+    x.lineWidth=1;
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<LINK){
+          x.strokeStyle=`rgba(90,150,255,${(1-d/LINK)*.32})`;
+          x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();
+        }
+      }
+      const dm=Math.hypot(a.x-mouse.x,a.y-mouse.y);
+      if(dm<MOUSE_R+40){
+        x.strokeStyle=`rgba(63,224,240,${(1-dm/(MOUSE_R+40))*.55})`;
+        x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mouse.x,mouse.y);x.stroke();
+      }
+    }
+    /* düğümler */
+    for(const p of nodes){
+      x.fillStyle=p.glow>.05?`rgba(63,224,240,${.6+p.glow*.4})`:'rgba(170,205,255,.75)';
+      x.beginPath();x.arc(p.x,p.y,p.r+p.glow*2.2,0,Math.PI*2);x.fill();
+      if(p.glow>.05){
+        x.fillStyle=`rgba(63,224,240,${p.glow*.18})`;
+        x.beginPath();x.arc(p.x,p.y,p.r+10*p.glow,0,Math.PI*2);x.fill();
+      }
+    }
+    if(!step)return;
+    /* sinyal pulsları */
+    if(pulses.length<Math.max(5,nodes.length/10)&&Math.random()<.07)spawn();
+    for(let k=pulses.length-1;k>=0;k--){
+      const s=pulses[k],a=nodes[s.a],b=nodes[s.b];
+      if(!a||!b){pulses.splice(k,1);continue}
+      const len=Math.max(1,Math.hypot(b.x-a.x,b.y-a.y));
+      s.t+=2.6/len;
+      const t=Math.min(1,s.t),px=a.x+(b.x-a.x)*t,py=a.y+(b.y-a.y)*t;
+      const g=x.createLinearGradient(a.x,a.y,px,py);
+      g.addColorStop(0,'rgba(63,224,240,0)');g.addColorStop(1,'rgba(63,224,240,.9)');
+      x.strokeStyle=g;x.lineWidth=1.6;
+      x.beginPath();x.moveTo(a.x,a.y);x.lineTo(px,py);x.stroke();
+      x.shadowColor='#3fe0f0';x.shadowBlur=14;x.fillStyle='#d9fbff';
+      x.beginPath();x.arc(px,py,2.3,0,Math.PI*2);x.fill();
+      x.shadowBlur=0;
+      if(s.t>=1){
+        b.glow=1;
+        if(len>LINK*1.25||--s.hops<=0){pulses.splice(k,1);continue}
+        const nb=neighbors(s.b,s.a);
+        if(!nb.length){pulses.splice(k,1);continue}
+        s.a=s.b;s.b=nb[Math.floor(Math.random()*nb.length)];s.t=0;
+      }
+    }
+  }
+  function loop(){if(!running)return;draw(true);requestAnimationFrame(loop)}
+
+  addEventListener('resize',()=>{resize();if(reduce)draw(false)});
+  addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;if(reduce)draw(false)});
+  document.addEventListener('pointerleave',()=>{mouse.x=mouse.y=-9999});
+  addEventListener('pointerdown',e=>{
+    if(reduce)return;
+    let best=-1,bd=140;
+    nodes.forEach((p,i)=>{const d=Math.hypot(p.x-e.clientX,p.y-e.clientY);if(d<bd){bd=d;best=i}});
+    if(best>=0){nodes[best].glow=1;for(let i=0;i<4;i++)spawn(best,6)}
+  });
+  document.addEventListener('visibilitychange',()=>{
+    running=!document.hidden;
+    if(running&&!reduce)requestAnimationFrame(loop);
+  });
+
+  resize();
+  if(reduce)draw(false);else requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
